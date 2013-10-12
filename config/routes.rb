@@ -1,10 +1,8 @@
 CheersPal::Application.routes.draw do
   root 'home#index'
 
-  namespace :api do
-    resources :login
-    resources :gifts
-  end
+  resources :login
+  resources :gifts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
