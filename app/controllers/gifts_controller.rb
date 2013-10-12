@@ -6,16 +6,18 @@ class GiftsController < ApplicationController
   end
 
   def create
-    # puts "PARAMS ->"
-    # puts params.except(:action, :controller)
-    # params[:charity] = to_boolean(params[:charity])
-    # params[:sent_time] = Time.at(params[:sent_time].to_i)
-    # gift = Gift.new(params.except(:action, :controller))
-    # if gift.save
-    #   render json: {"success" => "Data was saved."}
-    # else
-    #   render json: {"error" => "Something went wrong. Data not saved. Check params are correct format."}
-    # end
+    sender = params[:sender]
+    receiver = params[:sender]
+    amount = params[:amount]
+    title = params[:title]
+    charity = to_boolean(params[:charity])
+    sent_time = Time.at(params[:sent_time].to_i)
+    gift = Gift.new(sender:sender,receiver:receiver,amount:amount,title:title,charity:charity,sent_time:sent_time)
+    if gift.save
+      render json: {"success" => "Data was saved."}
+    else
+      render json: {"error" => "Something went wrong. Data not saved. Check params are correct format."}
+    end
   end
 
   private
