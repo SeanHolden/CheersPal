@@ -15,7 +15,8 @@ class GiftsController < ApplicationController
   def create
     user = User.find_by(email: params[:sender_id])
     if user
-      gift = user.gifts.new(receiver_id:params[:receiver_id],
+      gift = user.gifts.new(sender_id: params[:sender_id],
+                            receiver_id:params[:receiver_id],
                             amount: params[:amount],
                             title: params[:title],
                             sent_time: Time.now.to_i)
