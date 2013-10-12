@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012180244) do
+ActiveRecord::Schema.define(version: 20131012222657) do
 
   create_table "gifts", force: true do |t|
-    t.string   "sender"
-    t.string   "receiver"
     t.string   "amount"
     t.string   "title"
     t.boolean  "charity"
@@ -23,6 +21,21 @@ ActiveRecord::Schema.define(version: 20131012180244) do
     t.datetime "claim_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sender_id"
+    t.string   "sender_firstname"
+    t.string   "sender_lastname"
+    t.string   "receiver_id"
+    t.string   "receiver_firstname"
+    t.string   "receiver_lastname"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
 end

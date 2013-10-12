@@ -1,5 +1,5 @@
 class GiftsController < ApplicationController
-  protect_from_forgery except: [:index, :create, :destroy]
+  protect_from_forgery except: [:index, :create, :destroy, :show]
 
   def index
     # render json: [{id:1, sender:"aaa", receiver: "bbb", amount: 400, title:"beer", charity:"false", sent_time:1381602027, claim_time:nil}]
@@ -7,9 +7,19 @@ class GiftsController < ApplicationController
     render 'index.json'
   end
 
+  def show
+    id = params[:id]
+    @gifts = Gift.where("receiver_id = ? OR sender_id = ?", id, id)
+    render 'show.json'
+  end
+
   def create
-    sender = params[:sender]
-    receiver = params[:sender]
+    sender_id = params[:sender_id]
+    sender_firstname = params[:sender_firstname]
+    sender_firstname = params[:sender_lastname]
+    receiver_id = params[:receiver_id]
+    receiver_firstname = params[:receiver_firstname]
+    receiver_lastname = params[:receiver_lastname]
     amount = params[:amount]
     title = params[:title]
     charity = to_boolean(params[:charity])
