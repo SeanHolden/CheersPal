@@ -2,33 +2,30 @@ class GiftsController < ApplicationController
   protect_from_forgery except: [:index, :create, :destroy, :show]
 
   def index
-    # render json: [{id:1, sender:"aaa", receiver: "bbb", amount: 400, title:"beer", charity:"false", sent_time:1381602027, claim_time:nil}]
-    @gifts = Gift.all
-    render 'index.json'
+    # @gifts = Gift.all
+    # render 'index.json'
   end
 
   def show
-    id = params[:id]
-    @gifts = Gift.where("receiver_id = ? OR sender_id = ?", id, id)
-    render 'show.json'
+    # id = params[:id]
+    # @gifts = Gift.where("receiver_id = ? OR sender_id = ?", id, id)
+    # render 'show.json'
   end
 
   def create
-    sender_id = params[:sender_id]
-    sender_firstname = params[:sender_firstname]
-    sender_firstname = params[:sender_lastname]
-    receiver_id = params[:receiver_id]
-    receiver_firstname = params[:receiver_firstname]
-    receiver_lastname = params[:receiver_lastname]
-    amount = params[:amount]
-    title = params[:title]
-    charity = to_boolean(params[:charity])
-    sent_time = Time.at(params[:sent_time].to_i)
-    gift = Gift.new(sender:sender,receiver:receiver,amount:amount,title:title,charity:charity,sent_time:sent_time)
-    if gift.save
-      render json: {"success" => "Data was saved."}
+    user = User.find_by(email: params[:sender_id])
+    if user
+      gift = user.gifts.new(receiver_id:params[:receiver_id],
+                            amount: params[:amount],
+                            title: params[:title],
+                            sent_time: Time.now.to_i)
+      if gift.save
+        render json: {"success" => "gift was created"}
+      else
+        render json: {"error" => "gift was not created. double check params are correct."}
+      end
     else
-      render json: {"error" => "Something went wrong. Data not saved. Check params are correct format."}
+      render json: {"error" => "user not found"}
     end
   end
 
