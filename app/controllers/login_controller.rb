@@ -2,6 +2,9 @@ class LoginController < ApplicationController
   protect_from_forgery except: [:create]
 
   def create
+    puts "PARAMS ..."
+    puts params
+    puts "...END OF PARAMS"
     email = params[:email].downcase
     firstname = params[:firstname].downcase
     lastname = params[:lastname].downcase
