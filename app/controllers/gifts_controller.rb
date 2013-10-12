@@ -2,8 +2,8 @@ class GiftsController < ApplicationController
   protect_from_forgery except: [:index, :create]
 
   def index
-    # render json: [{sender:"aaa", receiver: "bbb", amount: "400", title:"beer", charity:"false", sent_time:"1381602027", claim_time:""}]
-    render json: Gift.all
+    render json: [{sender:"aaa", receiver: "bbb", amount: "400", title:"beer", charity:"false", sent_time:1381602027, claim_time:nil}]
+    # render json: Gift.all
   end
 
   def create
