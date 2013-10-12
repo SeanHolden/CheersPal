@@ -1,5 +1,6 @@
 # @gifts = Gift.all
 json.array! @gifts do |gift|
+  json.id gift.id
   json.sender gift.sender
   json.receiver gift.receiver
   json.amount gift.amount.to_i

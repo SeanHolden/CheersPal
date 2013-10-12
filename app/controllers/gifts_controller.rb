@@ -1,5 +1,5 @@
 class GiftsController < ApplicationController
-  protect_from_forgery except: [:index, :create]
+  protect_from_forgery except: [:index, :create, :destroy]
 
   def index
     # render json: [{id:1, sender:"aaa", receiver: "bbb", amount: 400, title:"beer", charity:"false", sent_time:1381602027, claim_time:nil}]
@@ -18,6 +18,16 @@ class GiftsController < ApplicationController
       render json: {"success" => "Data was saved."}
     else
       render json: {"error" => "Something went wrong. Data not saved. Check params are correct format."}
+    end
+  end
+
+  def destroy
+    gift = Gift.find(params[:id])
+    if Gift.exists?(gift)
+      gift.destroy
+      render json: {"success" => "Gift destroyed"}
+    else
+      render json: {"error" => "Gift with id #{params[:id]} does not exist"}
     end
   end
 
