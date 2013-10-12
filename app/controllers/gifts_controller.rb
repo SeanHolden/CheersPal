@@ -4,6 +4,7 @@ class GiftsController < ApplicationController
   def index
     # render json: [{id:1, sender:"aaa", receiver: "bbb", amount: 400, title:"beer", charity:"false", sent_time:1381602027, claim_time:nil}]
     @gifts = Gift.all
+    render 'index.json'
   end
 
   def create
