@@ -1,4 +1,4 @@
-json.array! @gifts do |gift|
+json.array! @gifts.order('created_at DESC') do |gift|
   json.gift_id gift.id
   json.amount gift.amount.to_i
   json.title gift.title
