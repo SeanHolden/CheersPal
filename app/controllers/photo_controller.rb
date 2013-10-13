@@ -18,7 +18,7 @@ class PhotoController < ApplicationController
     )
 
     bucket = @s3.buckets['cheerspal']
-    obj = bucket.objects[ params[:id]+".jpg" ]
+    obj = bucket.objects[ "#{params[:id]}.jpg" ]
     image = params[:image].read
     obj.write(image)
 
