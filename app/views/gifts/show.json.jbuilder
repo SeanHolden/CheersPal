@@ -4,8 +4,8 @@ json.array! @gifts do |gift|
   json.title gift.title
   json.charity gift.charity
   json.sent_time gift.sent_time.to_i
-  json.sender User.where(email: gift.sender_id)
-  json.receiver User.where(email: gift.receiver_id)
+  json.sender User.where(email: gift.sender_id).first
+  json.receiver User.where(email: gift.receiver_id).first
   if gift.claim_time
     json.claim_time gift.claim_time.to_i
   else
