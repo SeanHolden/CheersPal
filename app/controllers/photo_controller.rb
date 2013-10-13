@@ -2,7 +2,8 @@ class PhotoController < ApplicationController
   protect_from_forgery except: [:create]
 
   def show
-    render json: { "gift_id" => params[:id], "image_url" => "https://s3-eu-west-1.amazonaws.com/cheerspal/#{params[:id]}.jpg" }
+    # render json: { "gift_id" => params[:id], "image_url" => "https://s3-eu-west-1.amazonaws.com/cheerspal/#{params[:id]}.jpg" }
+    redirect_to "https://s3-eu-west-1.amazonaws.com/cheerspal/#{params[:id]}.jpg"
   end
 
   def create
