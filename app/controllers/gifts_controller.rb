@@ -8,7 +8,9 @@ class GiftsController < ApplicationController
 
   def show
     id = params[:id]
-    @gifts = Gift.where("receiver_id = ? OR sender_id = ?", id, id)
+    sender_gifts = Gift.where(sender_id: id)
+    receiver_gifts = Gift.where(receiver_id: id)
+    @gifts = sender_gifts + receiver_gifts
     render 'show.json'
   end
 
