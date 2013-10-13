@@ -19,7 +19,7 @@ class GiftsController < ApplicationController
                             receiver_id:params[:receiver_id],
                             amount: params[:amount],
                             title: params[:title],
-                            sent_time: Time.at( params[:sent_time].to_i )
+                            sent_time: Time.at( params[:sent_time].to_i ) )
       if gift.save
         render json: {"success" => "gift was created"}
       else
