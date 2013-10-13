@@ -9,6 +9,7 @@ CheersPal::Application.routes.draw do
   get 'photo/:id' => 'photo#show'
   post 'photo' => 'photo#create'
 
+  get 'get_access_token' => 'pay#get_access_token'
   post 'pay' => 'pay#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
