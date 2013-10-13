@@ -1,9 +1,11 @@
 class PhotoController < ApplicationController
   protect_from_forgery except: [:create]
 
+  def show
+    render json: { "gift_id" => params[:id], "image_url" => "https://s3-eu-west-1.amazonaws.com/cheerspal/#{params[:id]}.jpg" }
+  end
+
   def create
-    puts "IMAGE:"
-    puts params
     gift = Gift.find(params[:id])
     unless gift.nil?
       gift.update_attributes(claim_time:Time.now, charity:false)
@@ -15,12 +17,9 @@ class PhotoController < ApplicationController
     )
 
     bucket = @s3.buckets['cheerspal']
-    obj = bucket.objects[ params[:id] ]
+    obj = bucket.objects[ params[:id]+".jpg" ]
     image = params[:image].read
-    # puts image
-    puts "DID IT REACH HERE?"
     obj.write(image)
-    puts "If it reached here then obj.write worked?"
 
     render json: {"endpoint" => "reached"}
   end

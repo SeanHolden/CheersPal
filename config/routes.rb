@@ -6,6 +6,7 @@ CheersPal::Application.routes.draw do
 
   get 'user' => 'users#index' 
 
+  get 'photo/:id' => 'photo#show'
   post 'photo' => 'photo#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
