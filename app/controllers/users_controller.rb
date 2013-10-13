@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  protect_from_forgery except: [:index]
+
   def index
     user = User.find_by(email: params[:email])
     if user.nil?
