@@ -9,6 +9,8 @@ CheersPal::Application.routes.draw do
   get 'photo/:id' => 'photo#show'
   post 'photo' => 'photo#create'
 
+  post 'pay' => 'pay#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

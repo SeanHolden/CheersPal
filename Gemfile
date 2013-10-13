@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+gem 'paypal-sdk-adaptivepayments'
+# gem 'adaptive_payments_samples', :git => "https://github.com/paypal/adaptivepayments-sdk-ruby.git", :group => :development
+
 gem 'carrierwave'
 gem 'fog'
 
