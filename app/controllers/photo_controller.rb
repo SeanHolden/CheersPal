@@ -17,8 +17,10 @@ class PhotoController < ApplicationController
     bucket = @s3.buckets['cheerspal']
     obj = bucket.objects[ params[:id] ]
     image = params[:image].read
-    puts image
+    # puts image
+    puts "DID IT REACH HERE?"
     obj.write(image)
+    puts "If it reached here then obj.write worked?"
 
     render json: {"endpoint" => "reached"}
   end
